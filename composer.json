@@ -1,0 +1,57 @@
+{
+    "name": "elimuswift/tenancy",
+    "description": "Run multiple websites using the same laravel installation while keeping tenant specific data separated for fully independant multi-domain setups.",
+    "keywords": [
+        "laravel",
+        "multi-tenant",
+        "multi-tenancy",
+        "tenancy",
+        "saas",
+        "hyn"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniël Klabbers",
+            "email": "daniel+hyn@klabbers.email",
+            "homepage": "https://github.com/luceos"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/elimuswift/tenancy/issues",
+        "source": "https://github.com/elimuswift/tenancy"
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "phpseclib/phpseclib": "~2.0",
+        "doctrine/dbal": "~2.5",
+        "ramsey/uuid": "^3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7 || ^6.2",
+        "symfony/dom-crawler": "~3.1",
+        "laravel/laravel": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hyn\\Tenancy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hyn\\Tenancy\\Tests\\": "tests/unit-tests/",
+            "Hyn\\Tenancy\\Tests\\Traits\\": "tests/Traits/"
+        },
+        "classmap": [
+            "tests/Test.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hyn\\Tenancy\\Providers\\TenancyProvider",
+                "Hyn\\Tenancy\\Providers\\WebserverProvider"
+            ]
+        }
+    }
+}
