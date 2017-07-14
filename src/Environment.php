@@ -33,7 +33,7 @@ class Environment
     {
         $this->app = $app;
 
-        if (config('tenancy.hostname.auto-identification')) {
+        if (!$app->runningInConsole() && config('tenancy.hostname.auto-identification')) {
             $this->identifyHostname($app[Resolver::class]);
             // Resolve
             $this->app[Database\Connection::class]->set($this->app[CurrentHostname::class]);
