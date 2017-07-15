@@ -148,9 +148,13 @@ class Connection
                 $connection
             );
         }
-        $this->emitEvent(new Resolved($website));
+        if ($website) {
+            $this->emitEvent(new Resolved($website));
 
-        return true;
+            return true;
+        }
+
+        return false;
     }
 
     /**

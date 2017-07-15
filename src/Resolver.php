@@ -53,7 +53,9 @@ class Resolver
             $hostname = $this->hostname->getDefault();
         }
 
-        $this->emitEvent(new Identified($hostname));
+        if ($hostname) {
+            $this->emitEvent(new Identified($hostname));
+        }
 
         return $hostname;
     }
