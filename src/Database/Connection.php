@@ -148,7 +148,7 @@ class Connection
                 $connection
             );
         }
-        if ($website) {
+        if ($website && $connection == $this->tenantName()) {
             $this->emitEvent(new Resolved($website));
 
             return true;
