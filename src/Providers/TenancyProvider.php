@@ -93,7 +93,7 @@ class TenancyProvider extends ServiceProvider
     protected function registerConfiguration()
     {
         $this->publishes([
-            __DIR__.'/../../assets/configs/tenancy.php' => config_path('tenancy.php'),
+            __DIR__ . '/../../assets/configs/tenancy.php' => config_path('tenancy.php'),
         ], 'tenancy');
     }
 }

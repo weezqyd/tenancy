@@ -78,7 +78,7 @@ class TenantConsoleOption
                         // Fire tenant identification Event
                         $host = $website->hostnames->first();
                         $this->emitEvent(new Identified($host));
-                        $output->writeln('<info>Running command for '.$website->uuid.'</info>');
+                        $output->writeln('<info>Running command for ' . $website->uuid . '</info>');
                         try {
                             $command->run($input, $output);
                         } catch (\Exception $e) {
@@ -89,7 +89,7 @@ class TenantConsoleOption
                         }
                     }
                 } elseif ($website = $this->website->findByUuidOrId($tenant)) {
-                    $output->writeln('<info>Running command for '.$website->uuid.'</info>');
+                    $output->writeln('<info>Running command for ' . $website->uuid . '</info>');
                     $host = $website->hostnames->first();
                     $this->emitEvent(new Identified($host));
 

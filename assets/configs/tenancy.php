@@ -245,13 +245,12 @@ return [
              * the tenant directory.
              */
             'enabled' => true,
-        ]
-
+        ],
     ],
     'directories' => [
             'logs',
             'media',
             'backups',
-            'assets'
+            'assets',
         ],
 ];

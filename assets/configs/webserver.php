@@ -76,7 +76,7 @@ return [
             ],
         ],
     ],
-    /**
+    /*
      * Configuration options for supervisor queue worker
      */
     'supervisor' => [

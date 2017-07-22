@@ -14,7 +14,6 @@
 
 namespace Hyn\Tenancy\Providers\Tenants;
 
-use Hyn\Tenancy\Resolver;
 use Hyn\Tenancy\Database\Connection;
 use Illuminate\Support\ServiceProvider;
 use Hyn\Tenancy\Database\Console\MigrateCommand;

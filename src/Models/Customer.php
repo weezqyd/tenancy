@@ -35,7 +35,6 @@ use Hyn\Tenancy\Abstracts\SystemModel;
  */
 class Customer extends SystemModel
 {
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -45,7 +45,7 @@ class EventProvider extends ServiceProvider
         // Loads custom vendor folder for tenant.
         Listeners\Filesystem\LoadsVendor::class,
         // Generate supervisor confiig files
-        Generators\Supervisor\SupervisorConfiguration::class
+        Generators\Supervisor\SupervisorConfiguration::class,
     ];
 
     public function boot()

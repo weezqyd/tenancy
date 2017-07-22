@@ -36,9 +36,10 @@ class SupervisorConfiguration
     {
         $configs = view('tenancy.generator::supervisor.queue-worker', compact('website'));
         $logDir = storage_path("app/tenancy/tenants/{$website->uuid}/logs");
-        if (! is_dir($logDir)) {
+        if (!is_dir($logDir)) {
             app('tenant.disk')->makeDirectory("tenants/{$website->uuid}/logs");
         }
+
         return $this->filesystem()->put($this->configFileName($website->uuid), $configs);
     }
 
