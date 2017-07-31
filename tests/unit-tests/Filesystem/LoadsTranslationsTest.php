@@ -1,21 +1,9 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Tests\Filesystem;
 
-namespace Hyn\Tenancy\Tests\Filesystem;
-
-use Hyn\Tenancy\Tests\Test;
-use Hyn\Tenancy\Website\Directory;
+use Elimuswift\Tenancy\Tests\Test;
+use Elimuswift\Tenancy\Website\Directory;
 use Illuminate\Contracts\Foundation\Application;
 
 class LoadsTranslationsTest extends Test
@@ -43,7 +31,9 @@ class LoadsTranslationsTest extends Test
         $this->assertTrue($this->directory->makeDirectory('lang'));
 
         // Write a testing config.
-        $this->assertTrue($this->directory->put('lang' . DIRECTORY_SEPARATOR . 'ch' . DIRECTORY_SEPARATOR . 'test.php', <<<EOM
+        $this->assertTrue($this->directory->put(
+            'lang' . DIRECTORY_SEPARATOR . 'ch' . DIRECTORY_SEPARATOR . 'test.php',
+            <<<EOM
 <?php
 
 return [

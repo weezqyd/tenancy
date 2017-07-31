@@ -1,20 +1,8 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Abstracts;
 
-namespace Hyn\Tenancy\Abstracts;
-
-use Hyn\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -109,13 +97,13 @@ abstract class ModelObserver
      */
     protected function fire(string $event, Model $model)
     {
-        $eventClass = sprintf(
-            'Hyn\\Tenancy\\Events\\%s\\%s',
+        $eventClass = \sprintf(
+            'Elimuswift\\Tenancy\\Events\\%s\\%s',
             Str::plural((new ReflectionClass($model))->getShortName()),
             Str::camel($event)
         );
 
-        if (class_exists($eventClass)) {
+        if (\class_exists($eventClass)) {
             $this->emitEvent(new $eventClass($model));
         }
     }

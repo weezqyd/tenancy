@@ -1,21 +1,9 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Tests\Filesystem;
 
-namespace Hyn\Tenancy\Tests\Filesystem;
-
-use Hyn\Tenancy\Tests\Test;
-use Hyn\Tenancy\Website\Directory;
+use Elimuswift\Tenancy\Tests\Test;
+use Elimuswift\Tenancy\Website\Directory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -44,7 +32,9 @@ class LoadsRoutesTest extends Test
     public function reads_additional_routes()
     {
         // Write a testing config.
-        $this->assertTrue($this->directory->put('routes.php', <<<EOM
+        $this->assertTrue($this->directory->put(
+            'routes.php',
+            <<<EOM
 <?php
 
 \Route::get('foo', function () { return 'testing'; })->name('bar');

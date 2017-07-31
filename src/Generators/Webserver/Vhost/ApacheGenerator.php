@@ -1,22 +1,10 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Generators\Webserver\Vhost;
 
-namespace Hyn\Tenancy\Generators\Webserver\Vhost;
-
-use Hyn\Tenancy\Contracts\Webserver\ReloadsServices;
-use Hyn\Tenancy\Contracts\Webserver\VhostGenerator;
-use Hyn\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Contracts\Webserver\ReloadsServices;
+use Elimuswift\Tenancy\Contracts\Webserver\VhostGenerator;
+use Elimuswift\Tenancy\Models\Website;
 
 class ApacheGenerator implements VhostGenerator, ReloadsServices
 {

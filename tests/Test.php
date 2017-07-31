@@ -1,24 +1,12 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Tests;
 
-namespace Hyn\Tenancy\Tests;
-
-use Hyn\Tenancy\Providers\TenancyProvider;
-use Hyn\Tenancy\Providers\WebserverProvider;
-use Hyn\Tenancy\Tests\Traits\InteractsWithBuilds;
-use Hyn\Tenancy\Tests\Traits\InteractsWithLaravelVersions;
-use Hyn\Tenancy\Tests\Traits\InteractsWithTenancy;
+use Elimuswift\Tenancy\Providers\TenancyProvider;
+use Elimuswift\Tenancy\Providers\WebserverProvider;
+use Elimuswift\Tenancy\Tests\Traits\InteractsWithBuilds;
+use Elimuswift\Tenancy\Tests\Traits\InteractsWithLaravelVersions;
+use Elimuswift\Tenancy\Tests\Traits\InteractsWithTenancy;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Testing\TestCase;

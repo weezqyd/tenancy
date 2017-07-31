@@ -1,31 +1,19 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Database;
 
-namespace Hyn\Tenancy\Database;
-
-use Hyn\Tenancy\Contracts\Database\PasswordGenerator;
-use Hyn\Tenancy\Events\Database\ConfigurationLoading;
-use Hyn\Tenancy\Exceptions\ConnectionException;
-use Hyn\Tenancy\Models\Hostname;
-use Hyn\Tenancy\Models\Website;
-use Hyn\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Contracts\Database\PasswordGenerator;
+use Elimuswift\Tenancy\Events\Database\ConfigurationLoading;
+use Elimuswift\Tenancy\Exceptions\ConnectionException;
+use Elimuswift\Tenancy\Models\Hostname;
+use Elimuswift\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\DatabaseManager;
-use Hyn\Tenancy\Events\Websites\Resolved;
+use Elimuswift\Tenancy\Events\Websites\Resolved;
 
 class Connection
 {
