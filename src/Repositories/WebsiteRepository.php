@@ -1,14 +1,14 @@
 <?php
 
-namespace Hyn\Tenancy\Repositories;
+namespace Elimuswift\Tenancy\Repositories;
 
-use Hyn\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Models\Website;
 use Illuminate\Contracts\Cache\Factory;
-use Hyn\Tenancy\Traits\DispatchesEvents;
-use Hyn\Tenancy\Events\Websites as Events;
-use Hyn\Tenancy\Validators\WebsiteValidator;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Events\Websites as Events;
+use Elimuswift\Tenancy\Validators\WebsiteValidator;
 use Illuminate\Database\Eloquent\Collection;
-use Hyn\Tenancy\Contracts\Repositories\WebsiteRepository as Contract;
+use Elimuswift\Tenancy\Contracts\Repositories\WebsiteRepository as Contract;
 
 class WebsiteRepository implements Contract
 {

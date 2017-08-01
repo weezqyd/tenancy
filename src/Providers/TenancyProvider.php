@@ -65,7 +65,7 @@ class TenancyProvider extends ServiceProvider
 
     protected function migrations()
     {
-        //$this->loadMigrationsFrom(realpath(__DIR__.'/../../assets/migrations'));
+        $this->loadMigrationsFrom(realpath(__DIR__.'/../../assets/migrations'));
     }
 
     public function provides()
