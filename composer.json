@@ -7,13 +7,13 @@
         "multi-tenancy",
         "tenancy",
         "saas",
-        "hyn"
+        "Elimuswift"
     ],
     "license": "MIT",
     "authors": [
         {
             "name": "Daniël Klabbers",
-            "email": "daniel+hyn@klabbers.email",
+            "email": "daniel+Elimuswift@klabbers.email",
             "homepage": "https://github.com/luceos"
         }
     ],
@@ -34,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Hyn\\Tenancy\\": "src/"
+            "Elimuswift\\Tenancy\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Hyn\\Tenancy\\Tests\\": "tests/unit-tests/",
-            "Hyn\\Tenancy\\Tests\\Traits\\": "tests/Traits/"
+            "Elimuswift\\Tenancy\\Tests\\": "tests/unit-tests/",
+            "Elimuswift\\Tenancy\\Tests\\Traits\\": "tests/Traits/"
         },
         "classmap": [
             "tests/Test.php"
@@ -49,8 +49,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hyn\\Tenancy\\Providers\\TenancyProvider",
-                "Hyn\\Tenancy\\Providers\\WebserverProvider"
+                "Elimuswift\\Tenancy\\Providers\\TenancyProvider",
+                "Elimuswift\\Tenancy\\Providers\\WebserverProvider"
             ]
         }
     }

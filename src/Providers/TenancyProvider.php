@@ -1,25 +1,13 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Providers;
 
-namespace Hyn\Tenancy\Providers;
-
-use Hyn\Tenancy\Resolver;
-use Hyn\Tenancy\Commands\InstallCommand;
-use Hyn\Tenancy\Contracts;
-use Hyn\Tenancy\Environment;
-use Hyn\Tenancy\Providers\Tenants as Providers;
-use Hyn\Tenancy\Repositories;
+use Elimuswift\Tenancy\Resolver;
+use Elimuswift\Tenancy\Commands\InstallCommand;
+use Elimuswift\Tenancy\Contracts;
+use Elimuswift\Tenancy\Environment;
+use Elimuswift\Tenancy\Providers\Tenants as Providers;
+use Elimuswift\Tenancy\Repositories;
 use Illuminate\Support\ServiceProvider;
 
 class TenancyProvider extends ServiceProvider
@@ -77,7 +65,7 @@ class TenancyProvider extends ServiceProvider
 
     protected function migrations()
     {
-        //$this->loadMigrationsFrom(realpath(__DIR__.'/../../assets/migrations'));
+        $this->loadMigrationsFrom(realpath(__DIR__.'/../../assets/migrations'));
     }
 
     public function provides()

@@ -1,17 +1,5 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
-
 chdir(getenv('CI_PROJECT_DIR'));
 
 $base_path = __DIR__ . '/../../';
@@ -40,8 +28,8 @@ if (preg_match(
     }
 
     echo <<<EOM
-    
-    
+
+
 Found advanced CI configuration from CI_JOB_NAME environment variable:
     - Webserver {$m['webserver']}
     - PHP {$m['php_version']}

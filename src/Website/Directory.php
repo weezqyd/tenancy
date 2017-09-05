@@ -1,22 +1,10 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Website;
 
-namespace Hyn\Tenancy\Website;
-
-use Hyn\Tenancy\Environment;
-use Hyn\Tenancy\Models\Website;
-use Hyn\Tenancy\Traits\UnderstandsLaravelVersions;
+use Elimuswift\Tenancy\Environment;
+use Elimuswift\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Traits\UnderstandsLaravelVersions;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Filesystem\Filesystem as LocalSystem;
@@ -102,7 +90,8 @@ class Directory implements Filesystem
         }
 
         if ($local && $this->isLocal()) {
-            $path = sprintf('%s%s',
+            $path = sprintf(
+                '%s%s',
                 $this->filesystem->getAdapter()->getPathPrefix(),
                 $path
             );

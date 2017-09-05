@@ -1,25 +1,13 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Tests\Traits;
 
-namespace Hyn\Tenancy\Tests\Traits;
-
-use Hyn\Tenancy\Contracts\Repositories\HostnameRepository;
-use Hyn\Tenancy\Contracts\Repositories\WebsiteRepository;
-use Hyn\Tenancy\Events\Hostnames\Identified;
-use Hyn\Tenancy\Models\Hostname;
-use Hyn\Tenancy\Models\Website;
-use Hyn\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Contracts\Repositories\HostnameRepository;
+use Elimuswift\Tenancy\Contracts\Repositories\WebsiteRepository;
+use Elimuswift\Tenancy\Events\Hostnames\Identified;
+use Elimuswift\Tenancy\Models\Hostname;
+use Elimuswift\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
 
 trait InteractsWithTenancy
 {

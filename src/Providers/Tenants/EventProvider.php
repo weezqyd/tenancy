@@ -1,21 +1,9 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Providers\Tenants;
 
-namespace Hyn\Tenancy\Providers\Tenants;
-
-use Hyn\Tenancy\Generators;
-use Hyn\Tenancy\Listeners;
+use Elimuswift\Tenancy\Generators;
+use Elimuswift\Tenancy\Listeners;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 

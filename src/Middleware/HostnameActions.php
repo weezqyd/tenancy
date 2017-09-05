@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Elimuswift\Tenancy\Middleware;
 
 use Closure;
-use Hyn\Tenancy\Resolver;
-use Hyn\Tenancy\Contracts\CurrentHostname;
-use Hyn\Tenancy\Events\Hostnames\NoneFound;
-use Hyn\Tenancy\Events\Hostnames\Redirected;
-use Hyn\Tenancy\Events\Hostnames\Secured;
-use Hyn\Tenancy\Events\Hostnames\UnderMaintenance;
-use Hyn\Tenancy\Models\Hostname;
-use Hyn\Tenancy\Contracts\Repositories\HostnameRepository;
-use Hyn\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Resolver;
+use Elimuswift\Tenancy\Contracts\CurrentHostname;
+use Elimuswift\Tenancy\Events\Hostnames\NoneFound;
+use Elimuswift\Tenancy\Events\Hostnames\Redirected;
+use Elimuswift\Tenancy\Events\Hostnames\Secured;
+use Elimuswift\Tenancy\Events\Hostnames\UnderMaintenance;
+use Elimuswift\Tenancy\Models\Hostname;
+use Elimuswift\Tenancy\Contracts\Repositories\HostnameRepository;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

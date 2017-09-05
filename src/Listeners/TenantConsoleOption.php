@@ -1,30 +1,18 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
-
-namespace Hyn\Tenancy\Listeners;
+namespace Elimuswift\Tenancy\Listeners;
 
 use Illuminate\Foundation\Application;
-use Hyn\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
 use Illuminate\Contracts\Events\Dispatcher;
 use Symfony\Component\Console\ConsoleEvents;
-use Hyn\Tenancy\Events\Hostnames\Identified;
+use Elimuswift\Tenancy\Events\Hostnames\Identified;
 use Illuminate\Console\Events\ArtisanStarting;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
-use Hyn\Tenancy\Contracts\Repositories\WebsiteRepository as Site;
+use Elimuswift\Tenancy\Contracts\Repositories\WebsiteRepository as Site;
 
 class TenantConsoleOption
 {

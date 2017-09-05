@@ -1,26 +1,14 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Repositories;
 
-namespace Hyn\Tenancy\Repositories;
-
-use Hyn\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Models\Website;
 use Illuminate\Contracts\Cache\Factory;
-use Hyn\Tenancy\Traits\DispatchesEvents;
-use Hyn\Tenancy\Events\Websites as Events;
-use Hyn\Tenancy\Validators\WebsiteValidator;
+use Elimuswift\Tenancy\Traits\DispatchesEvents;
+use Elimuswift\Tenancy\Events\Websites as Events;
+use Elimuswift\Tenancy\Validators\WebsiteValidator;
 use Illuminate\Database\Eloquent\Collection;
-use Hyn\Tenancy\Contracts\Repositories\WebsiteRepository as Contract;
+use Elimuswift\Tenancy\Contracts\Repositories\WebsiteRepository as Contract;
 
 class WebsiteRepository implements Contract
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Hyn\Tenancy\Generators\Supervisor;
+namespace Elimuswift\Tenancy\Generators\Supervisor;
 
 use Illuminate\Support\Arr;
-use Hyn\Tenancy\Models\Website;
+use Elimuswift\Tenancy\Models\Website;
 use Illuminate\Contracts\Events\Dispatcher;
-use Hyn\Tenancy\Events\Websites as Events;
+use Elimuswift\Tenancy\Events\Websites as Events;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 /**

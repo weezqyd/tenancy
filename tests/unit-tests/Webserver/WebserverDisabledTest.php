@@ -1,22 +1,10 @@
 <?php
 
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
+namespace Elimuswift\Tenancy\Tests\Webserver;
 
-namespace Hyn\Tenancy\Tests\Webserver;
-
-use Hyn\Tenancy\Providers\TenancyProvider;
-use Hyn\Tenancy\Providers\WebserverProvider;
-use Hyn\Tenancy\Tests\Test;
+use Elimuswift\Tenancy\Providers\TenancyProvider;
+use Elimuswift\Tenancy\Providers\WebserverProvider;
+use Elimuswift\Tenancy\Tests\Test;
 use Illuminate\Support\Arr;
 
 class WebserverDisabledTest extends Test

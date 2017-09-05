@@ -1,18 +1,5 @@
 <?php
-
-/*
- * This file is part of the hyn/multi-tenant package.
- *
- * (c) Daniël Klabbers <daniel@klabbers.email>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/hyn/multi-tenant
- *
- */
-
-use Hyn\Tenancy\Abstracts\AbstractMigration;
+use Elimuswift\Tenancy\Abstracts\AbstractMigration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -23,12 +10,17 @@ class TenancyCustomers extends AbstractMigration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-
-            $table->string('name');
-            $table->string('email');
-
-            $table->timestamps();
+            $table->bigIncrements('id')->unsigned();
+            $table->string('name', 255);
+            $table->string('email', 255);
+            $table->string('slug', 255)->nullable();
+            $table->string('city', 255)->nullable();
+            $table->string('mobile', 255)->nullable();
+            $table->string('secondary_email', 255)->nullable();
+            $table->integer('currency_id')->nullable()->unsigned();
+            $table->string('tax', 255)->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->softDeletes();
         });
     }
