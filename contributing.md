@@ -3,10 +3,11 @@
 In order to match our coding style, make sure you:
  - adhere to the editorconfig; common IDE's have support natively or through addons.
  - adhere to PSR-2.
+ - adhere to PSR-4.
 
 # Contributor License Agreement
 
-By contributing your code to hyn/multi-tenant you grant Daniël Klabbers a non-exclusive, irrevocable, worldwide, 
+By contributing your code to elimuswift/tenancy you grant Albert Leitato a non-exclusive, irrevocable, worldwide, 
 royalty-free, sublicensable, transferable license under all of Your relevant intellectual property rights 
 (including copyright, patent, and any other rights), to use, copy, prepare derivative works of, distribute 
 and publicly perform and display the Contributions on any licensing terms, including without limitation: 
@@ -23,7 +24,7 @@ person claims, or has the right to claim, any right in any invention or patent r
 You also represent that You are not legally obligated, whether by entering into an agreement or otherwise, 
 in any way that conflicts with the terms of this license.
 
-Daniël Klabbers acknowledges that, except as explicitly described in this Agreement, any Contribution which 
+Albert Leitato acknowledges that, except as explicitly described in this Agreement, any Contribution which 
 you provide is on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
 INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY, OR 
 FITNESS FOR A PARTICULAR PURPOSE.
