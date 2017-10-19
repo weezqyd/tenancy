@@ -4,7 +4,7 @@ use Elimuswift\Tenancy\Abstracts\AbstractMigration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TenancyCustomers extends AbstractMigration
+class CreateTenancyTables extends AbstractMigration
 {
     protected $system = true;
 
