@@ -13,8 +13,9 @@ class ShaGenerator implements UuidGenerator
      *
      * @return string
      */
-    public function generate(Website $website, int $lenght = 13): string
+    public function generate(Website $website): string
     {
+        $lenght = config()->get('tenancy.random-id-length', 13);
         if (function_exists('random_bytes')) {
             $bytes = random_bytes(ceil($lenght / 2));
         } elseif (function_exists('openssl_random_pseudo_bytes')) {

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Elimuswift/multi-tenant package.
  *
- * (c) Daniël Klabbers <daniel@klabbers.email>
+ * (c) Albert Leitato <wizqydy@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,16 +24,18 @@ return [
          * tenant folder structure, disable this and implement
          * your own id generation logic.
          *
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-websitedisable-random-id
          */
         'disable-random-id' => false,
+        /*
+         * The length of the random id that will be generated
+         */
+        'random-id-length' => 16,
 
         /*
          * The random Id generator is responsible for creating the hash as mentioned
          * above. You can override what generator to use by modifying this value
          * in the configuration.
          *
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-websiterandom-id-generator
          * @warn This won't work if disable-random-id is true.
          */
         'random-id-generator' => Elimuswift\Tenancy\Generators\Uuid\ShaGenerator::class,
@@ -90,7 +92,6 @@ return [
          *
          * @warn this must be a FQDN, these have no protocol or path!
          *
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-hostnamedefault
          */
         'default' => env('TENANCY_DEFAULT_HOSTNAME'),
         /*
@@ -100,14 +101,12 @@ return [
          * set a specific website as currently active.
          *
          * @see src/Jobs/HostnameIdentification.php
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-hostnameauto-identification
          */
         'auto-identification' => env('TENANCY_AUTO_HOSTNAME_IDENTIFICATION', true),
         /*
          * Abort application execution in case no hostname was identified. This will throw a
          * 404 not found in case the tenant hostname was not resolved.
          *
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-hostnameabort-without-identified-hostname
          */
         'abort-without-identified-hostname' => true,
 
@@ -123,7 +122,6 @@ return [
          * You can set a environment variable to override the default database
          * connection to - for instance - the tenant connection 'tenant'.
          *
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-dbdefault
          */
         'default' => env('TENANCY_DEFAULT_CONNECTION'),
         /*
@@ -132,9 +130,6 @@ return [
          * is set up automatically by this package.
          *
          * @see src/Database/Connection.php
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-dbsystem-connection-name
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-dbtenant-connection-name
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-dbmigration-connection-name
          */
         'system-connection-name' => env('TENANCY_SYSTEM_CONNECTION_NAME', Connection::DEFAULT_SYSTEM_NAME),
         'tenant-connection-name' => env('TENANCY_TENANT_CONNECTION_NAME', Connection::DEFAULT_TENANT_NAME),
@@ -147,7 +142,6 @@ return [
          * set the mode to 'prefix'.
          *
          * @see src/Database/Connection.php
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-dbtenant-division-mode
          */
         'tenant-division-mode' => env('TENANCY_DATABASE_DIVISION_MODE', 'database'),
 
@@ -163,7 +157,6 @@ return [
          * The tenant migrations to be run during creation of a tenant. Specify a directory
          * to run the migrations from.
          *
-         * @see https://Elimuswift.readme.io/v3.0/docs/tenancy#section-dbtenant-migrations-path
          */
         'tenant-migrations-path' => false,
 
