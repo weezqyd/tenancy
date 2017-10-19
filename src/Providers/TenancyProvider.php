@@ -4,6 +4,7 @@ namespace Elimuswift\Tenancy\Providers;
 
 use Elimuswift\Tenancy\Resolver;
 use Elimuswift\Tenancy\Commands\InstallCommand;
+use Elimuswift\Tenancy\Commands\TenantsCommand;
 use Elimuswift\Tenancy\Contracts;
 use Elimuswift\Tenancy\Environment;
 use Elimuswift\Tenancy\Providers\Tenants as Providers;
@@ -21,16 +22,13 @@ class TenancyProvider extends ServiceProvider
         $this->app->register(Providers\BusProvider::class);
         $this->app->register(Providers\FilesystemProvider::class);
 
-        // Register last.
+        // Register last in order to listen to events from other modules
         $this->app->register(Providers\EventProvider::class);
 
-        $this->installCommand();
-
+        $this->registaerCommands();
         $this->repositories();
-
         $this->migrations();
         $this->registerConfiguration();
-
         $this->app->singleton(Resolver::class);
     }
 
@@ -42,9 +40,10 @@ class TenancyProvider extends ServiceProvider
         });
     }
 
-    protected function installCommand()
+    protected function registaerCommands()
     {
         $this->commands(InstallCommand::class);
+        $this->commands(TenantsCommand::class);
     }
 
     protected function repositories()
@@ -81,7 +80,7 @@ class TenancyProvider extends ServiceProvider
     protected function registerConfiguration()
     {
         $this->publishes([
-            __DIR__ . '/../../assets/configs/tenancy.php' => config_path('tenancy.php'),
+            __DIR__.'/../../assets/configs/tenancy.php' => config_path('tenancy.php'),
         ], 'tenancy');
     }
 }
