@@ -39,9 +39,9 @@ class DirectoryGenerator
         if (config('tenancy.website.auto-create-tenant-directory')) {
             $directories = config('tenancy.directories');
             $uuid = $event->website->uuid;
-            $this->filesystem()->makeDirectory($uuid);
+            $this->filesystem()->makeDirectory("tenants/{$uuid}");
             foreach ($directories as $directory) {
-                $this->filesystem()->makeDirectory("{$uuid}/{$directory}");
+                $this->filesystem()->makeDirectory("tenants/{$uuid}/{$directory}");
             }
         }
 
