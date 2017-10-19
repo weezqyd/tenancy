@@ -11,5 +11,5 @@ interface GeneratesConfiguration
      *
      * @return string
      */
-    public function generate(Website $website): string;
+    public function generate(Website $website, int $length = 13): string;
 }
