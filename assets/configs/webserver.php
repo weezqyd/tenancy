@@ -48,7 +48,7 @@ return [
         /*
          * The generator taking care of hooking into the Apache services and files.
          */
-        'generator' => \Hyn\Tenancy\Generators\Webserver\Vhost\ApacheGenerator::class,
+        'generator' => Elimuswift\Tenancy\Generators\Webserver\Vhost\ApacheGenerator::class,
 
         /*
          * Specify the disk you configured in the filesystems.php file where to store
