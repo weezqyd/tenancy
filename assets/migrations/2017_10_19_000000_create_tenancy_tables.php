@@ -52,7 +52,7 @@ class CreateTenancyTables extends AbstractMigration
     public function down()
     {
         Schema::dropIfExists('hostnames');
-        Schema::dropIfExists('customers');
         Schema::dropIfExists('websites');
+        Schema::dropIfExists('customers');
     }
 }

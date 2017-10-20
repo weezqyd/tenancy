@@ -111,7 +111,7 @@ class Connection
         $website = null;
 
         if ($to instanceof Hostname) {
-            $website = $to->website;
+            $website = $to->website()->first();
         }
 
         if ($to instanceof Website) {

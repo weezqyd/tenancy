@@ -2,9 +2,11 @@
 
 namespace Elimuswift\Tenancy\Listeners\Database;
 
+use Elimuswift\Tenancy\Contracts\CurrentHostname;
 use Elimuswift\Tenancy\Abstracts\HostnameEvent;
 use Elimuswift\Tenancy\Database\Connection;
 use Illuminate\Contracts\Events\Dispatcher;
+use Elimuswift\Tenancy\Environment;
 use Elimuswift\Tenancy\Events;
 
 class ConnectsTenants
@@ -26,6 +28,8 @@ class ConnectsTenants
     {
         $events->listen(Events\Hostnames\Identified::class, [$this, 'switch']);
         $events->listen(Events\Hostnames\Switched::class, [$this, 'switch']);
+        $events->listen(Events\Hostnames\Created::class, [$this, 'identifyHostname']);
+        $events->listen(Events\Websites\Resolved::class, [$this, 'resolvedHostname']);
     }
 
     /**
@@ -38,5 +42,25 @@ class ConnectsTenants
     public function switch(HostnameEvent $event): bool
     {
         return $this->connection->set($event->hostname);
+    }
+
+    /**
+     * Auto identification of the tenant hostname to use.
+     */
+    public function identifyHostname(HostnameEvent $event)
+    {
+        app()->extend(CurrentHostname::class, function ($abstract, $app) use ($event) {
+            return $app[Environment::class]->hostname($event->hostname);
+        });
+    }
+
+    /**
+     * The resolved hostname connection.
+     */
+    public function resolvedHostname(Events\Websites\Resolved $event)
+    {
+        app()->extend(CurrentHostname::class, function ($abstract, $app) use ($event) {
+            return $event->website->hostname;
+        });
     }
 }

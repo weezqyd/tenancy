@@ -10,6 +10,7 @@ use Elimuswift\Tenancy\Environment;
 use Elimuswift\Tenancy\Providers\Tenants as Providers;
 use Elimuswift\Tenancy\Repositories;
 use Illuminate\Support\ServiceProvider;
+use Elimuswift\Tenancy\Contracts\CurrentHostname;
 
 class TenancyProvider extends ServiceProvider
 {
@@ -23,13 +24,16 @@ class TenancyProvider extends ServiceProvider
         $this->app->register(Providers\FilesystemProvider::class);
 
         // Register last in order to listen to events from other modules
+        $this->repositories();
+        $this->app->singleton(Resolver::class);
+        $this->app->bind('resolver', function ($app) {
+            return $app[Resolver::class];
+        });
         $this->app->register(Providers\EventProvider::class);
 
         $this->registaerCommands();
-        $this->repositories();
         $this->migrations();
         $this->registerConfiguration();
-        $this->app->singleton(Resolver::class);
     }
 
     public function boot()
@@ -37,6 +41,10 @@ class TenancyProvider extends ServiceProvider
         // Now register it into ioc to make it globally available.
         $this->app->singleton(Environment::class, function ($app) {
             return new Environment($app);
+        });
+
+        $this->app->singleton(CurrentHostname::class, function ($app) {
+            return $app['resolver']->resolve();
         });
     }
 

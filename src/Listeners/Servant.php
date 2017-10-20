@@ -2,7 +2,7 @@
 
 namespace Elimuswift\Tenancy\Listeners;
 
-use Elimuswift\Tenancy\Abstracts\WebsiteEvent;
+use Elimuswift\Tenancy\Abstracts\AbstractEvent;
 use Elimuswift\Tenancy\Contracts\Generator\GeneratesConfiguration;
 use Elimuswift\Tenancy\Contracts\Generator\SavesToPath;
 use Elimuswift\Tenancy\Traits\DispatchesEvents;
@@ -34,7 +34,7 @@ class Servant
      */
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(Events\Websites\Created::class, [$this, 'generate']);
+        $events->listen([Events\Websites\Created::class, Events\Hostnames\Attached::class], [$this, 'generate']);
         $events->listen(Events\Websites\Updated::class, [$this, 'move']);
         $events->listen(Events\Websites\Deleted::class, [$this, 'delete']);
     }
@@ -67,9 +67,9 @@ class Servant
     }
 
     /**
-     * @param WebsiteEvent $event
+     * @param AbstractEvent $event
      */
-    public function generate(WebsiteEvent $event)
+    public function generate(AbstractEvent $event)
     {
         $this->each(function ($generator, $service, $config) use ($event) {
             $contents = $path = null;

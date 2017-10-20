@@ -55,7 +55,6 @@ class ConnectionTest extends Test
         $this->setUpHostnames(true);
         $this->setUpWebsites(true, true);
         $this->activateTenant('local');
-
         $this->assertTrue($this->connection->get() instanceof DatabaseConnection, 'Tenant connection is not set up properly.');
         $this->assertTrue($this->connection->system() instanceof DatabaseConnection, 'System connection fails once tenant connection is set up.');
     }
@@ -66,13 +65,13 @@ class ConnectionTest extends Test
      */
     public function can_migrate_the_tenant()
     {
-        config(['tenancy.db.tenant-migrations-path' => __DIR__ . '/../../migrations']);
+        config(['tenancy.db.tenant-migrations-path' => __DIR__.'/../../migrations']);
 
         $this->assertNotNull(config('tenancy.db.tenant-migrations-path'));
 
         $this->setUpHostnames(true);
         $this->setUpWebsites(true, true);
-        $this->activateTenant('local');
+        $this->activateTenant('tenant');
 
         $this->assertTrue($this->connection->get()->getSchemaBuilder()->hasTable('samples'));
     }

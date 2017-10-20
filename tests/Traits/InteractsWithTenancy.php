@@ -2,6 +2,7 @@
 
 namespace Elimuswift\Tenancy\Tests\Traits;
 
+use Illuminate\Support\Facades\DB;
 use Elimuswift\Tenancy\Contracts\Repositories\HostnameRepository;
 use Elimuswift\Tenancy\Contracts\Repositories\WebsiteRepository;
 use Elimuswift\Tenancy\Events\Hostnames\Identified;
@@ -70,8 +71,8 @@ trait InteractsWithTenancy
         Hostname::reguard();
 
         if ($save) {
-            $this->hostnames->create($this->hostname);
             $this->hostnames->create($this->tenant);
+            $this->hostnames->create($this->hostname);
         }
     }
 
@@ -106,6 +107,7 @@ trait InteractsWithTenancy
 
         if ($connect) {
             $this->website->hostnames()->save($this->hostname);
+            $this->activateTenant('tenant');
         }
     }
 
@@ -113,6 +115,10 @@ trait InteractsWithTenancy
     {
         foreach (['website', 'hostname', 'tenant'] as $property) {
             if ($this->{$property} && $this->{$property}->exists) {
+                if ($property === 'website') {
+                    DB::statement("DROP USER IF EXISTS '{$this->website->uuid}'@'localhost'");
+                    DB::statement("DROP DATABASE IF EXISTS `{$this->website->uuid}`");
+                }
                 $this->{$property}->delete();
             }
         }
