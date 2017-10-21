@@ -20,22 +20,6 @@ class Environment
     public function __construct(Application $app)
     {
         $this->app = $app;
-
-        if (!$app->runningInConsole() && config('tenancy.hostname.auto-identification')) {
-            $this->identifyHostname($app[Resolver::class]);
-            // Resolve
-            $this->app[Database\Connection::class]->set($this->app[CurrentHostname::class]);
-        }
-    }
-
-    /**
-     * Auto identification of the tenant hostname to use.
-     */
-    public function identifyHostname($resolver)
-    {
-        $this->app->singleton(CurrentHostname::class, function () use ($resolver) {
-            return $resolver->resolve();
-        });
     }
 
     /**

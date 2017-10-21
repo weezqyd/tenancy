@@ -3,14 +3,12 @@
 namespace Elimuswift\Tenancy\Middleware;
 
 use Closure;
-use Elimuswift\Tenancy\Resolver;
 use Elimuswift\Tenancy\Contracts\CurrentHostname;
 use Elimuswift\Tenancy\Events\Hostnames\NoneFound;
 use Elimuswift\Tenancy\Events\Hostnames\Redirected;
 use Elimuswift\Tenancy\Events\Hostnames\Secured;
 use Elimuswift\Tenancy\Events\Hostnames\UnderMaintenance;
 use Elimuswift\Tenancy\Models\Hostname;
-use Elimuswift\Tenancy\Contracts\Repositories\HostnameRepository;
 use Elimuswift\Tenancy\Traits\DispatchesEvents;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
 use Illuminate\Http\RedirectResponse;
@@ -31,12 +29,11 @@ class HostnameActions
     protected $redirect;
 
     /**
-     * @param CurrentHostname $hostname
-     * @param Redirector      $redirect
+     * @param Redirector $redirect
      */
-    public function __construct(HostnameRepository $hostname, Redirector $redirect)
+    public function __construct(Redirector $redirect)
     {
-        $this->hostname = $hostname;
+        $this->hostname = app(CurrentHostname::class);
         $this->redirect = $redirect;
     }
 
@@ -48,8 +45,7 @@ class HostnameActions
      */
     public function handle(Request $request, Closure $next)
     {
-        //dd(config('database'));
-        if ($this->hostname = app(Resolver::class)->resolvedHost()) {
+        if ($this->hostname) {
             if ($this->hostname->under_maintenance_since) {
                 return $this->maintenance($this->hostname);
             }
