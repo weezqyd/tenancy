@@ -2,6 +2,7 @@
 
 namespace Elimuswift\Tenancy\Tests\Traits;
 
+use Elimuswift\Tenancy\Database\Connection;
 use Illuminate\Support\Facades\DB;
 use Elimuswift\Tenancy\Contracts\Repositories\HostnameRepository;
 use Elimuswift\Tenancy\Contracts\Repositories\WebsiteRepository;
@@ -107,7 +108,7 @@ trait InteractsWithTenancy
 
         if ($connect) {
             $this->website->hostnames()->save($this->hostname);
-            $this->activateTenant('tenant');
+            //app(Connection::class)->set($this->website);
         }
     }
 

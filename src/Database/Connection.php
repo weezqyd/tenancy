@@ -223,7 +223,7 @@ class Connection
         $options = [
             '--database' => $this->migrationName(),
             '--seed' => true,
-            '--path' => config('tenancy.db.tenant-migrations-path'),
+            '--realpath' => config('tenancy.db.tenant-migrations-path'),
         ];
 
         $code = $this->artisan->call('migrate', $options);

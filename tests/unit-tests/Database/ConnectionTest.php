@@ -66,12 +66,12 @@ class ConnectionTest extends Test
     public function can_migrate_the_tenant()
     {
         config(['tenancy.db.tenant-migrations-path' => __DIR__.'/../../migrations']);
-
-        $this->assertNotNull(config('tenancy.db.tenant-migrations-path'));
+        $path = config('tenancy.db.tenant-migrations-path');
+        $this->assertNotNull($path);
 
         $this->setUpHostnames(true);
         $this->setUpWebsites(true, true);
-        $this->activateTenant('tenant');
+        $this->activateTenant('local');
 
         $this->assertTrue($this->connection->get()->getSchemaBuilder()->hasTable('samples'));
     }

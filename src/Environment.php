@@ -58,7 +58,7 @@ class Environment
     public function hostname(Models\Hostname $model = null): ?Models\Hostname
     {
         if ($model !== null) {
-            $this->app->singleton(CurrentHostname::class, function () use ($model) {
+            $this->app->extend(CurrentHostname::class, function ($abstract, $app) use ($model) {
                 return $model;
             });
 

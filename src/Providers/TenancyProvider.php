@@ -33,7 +33,6 @@ class TenancyProvider extends ServiceProvider
 
         $this->registaerCommands();
         $this->migrations();
-        $this->registerConfiguration();
     }
 
     public function boot()
@@ -42,8 +41,7 @@ class TenancyProvider extends ServiceProvider
         $this->app->singleton(Environment::class, function ($app) {
             return new Environment($app);
         });
-
-        $this->app->singleton(CurrentHostname::class, function ($app) {
+        $this->app->bind(CurrentHostname::class, function ($app) {
             return $app['resolver']->resolve();
         });
     }
@@ -78,17 +76,11 @@ class TenancyProvider extends ServiceProvider
     public function provides()
     {
         return [
+            Resolver::class,
             Environment::class,
             InstallCommand::class,
             Contracts\Repositories\HostnameRepository::class,
             Contracts\Repositories\WebsiteRepository::class,
         ];
-    }
-
-    protected function registerConfiguration()
-    {
-        $this->publishes([
-            __DIR__.'/../../assets/configs/tenancy.php' => config_path('tenancy.php'),
-        ], 'tenancy');
     }
 }

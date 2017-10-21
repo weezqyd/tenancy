@@ -158,7 +158,7 @@ class InstallationTest extends Test
     public function verify_tenant_request()
     {
         $this->setUpHostnames(true);
-
+        $this->setUpWebsites(true, true);
         $response = $this->get('http://tenant.testing/default', ['host' => $this->tenant->fqdn]);
 
         $this->assertJsonFragment(['fqdn' => $this->tenant->fqdn], $response);

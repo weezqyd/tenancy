@@ -47,7 +47,7 @@
         ]
     },
      "scripts": {
-        "test": "phpunit -c dev.phpunit.xml"
+        "test": "phpunit -c dev.phpunit.xml --verbose"
     },
     "extra": {
         "laravel": {
