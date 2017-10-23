@@ -87,9 +87,9 @@ class SupervisorConfiguration
     }
 
     /**
-     * Delete supervisor config file.
+     * Update supervisor config file.
      *
-     * @param Events\Deleted $event
+     * @param Events\Updated $event
      **/
     public function update(Events\Updated $event)
     {

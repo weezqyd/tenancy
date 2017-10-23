@@ -23,13 +23,22 @@ class TenancyProvider extends ServiceProvider
         $this->app->register(Providers\BusProvider::class);
         $this->app->register(Providers\FilesystemProvider::class);
 
-        // Register last in order to listen to events from other modules
         $this->repositories();
         $this->app->singleton(Resolver::class);
         $this->app->bind('resolver', function ($app) {
             return $app[Resolver::class];
         });
+        // Register last in order to listen to events from other modules
         $this->app->register(Providers\EventProvider::class);
+
+        // Now register it into ioc to make it globally available.
+        $this->app->singleton(Environment::class, function ($app) {
+            return new Environment($app);
+        });
+        //Resolve the current host here
+        $this->app->bind(CurrentHostname::class, function ($app) {
+            return $app['resolver']->resolve();
+        });
 
         $this->registaerCommands();
         $this->migrations();
@@ -37,13 +46,6 @@ class TenancyProvider extends ServiceProvider
 
     public function boot()
     {
-        // Now register it into ioc to make it globally available.
-        $this->app->singleton(Environment::class, function ($app) {
-            return new Environment($app);
-        });
-        $this->app->bind(CurrentHostname::class, function ($app) {
-            return $app['resolver']->resolve();
-        });
     }
 
     protected function registaerCommands()

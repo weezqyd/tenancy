@@ -76,7 +76,7 @@ class DirectoryGenerator
      */
     public function deleted(Events\Deleted $event): bool
     {
-        if (config('tenancy.website.auto-delete-tenant-directory')) {
+        if (config('tenancy.website.auto-delete-tenant-directory') && $event->website->uuid) {
             return $this->filesystem()->deleteDirectory($event->website->uuid);
         }
 
