@@ -110,7 +110,8 @@ class SupervisorConfiguration
     protected function deleteFile($uuid)
     {
         $file = $this->configFileName($uuid);
-        if (file_exists($file)) {
+
+        if ($this->filesystem()->exists($file)) {
             $this->filesystem()->delete($file);
         }
     }
@@ -129,9 +130,7 @@ class SupervisorConfiguration
             $process = new Process($command);
             try {
                 $process->mustRun();
-                echo $process->getOutput();
             } catch (ProcessFailedException $e) {
-                echo $e->getMessage();
             }
         }
     }
