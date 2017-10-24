@@ -16,6 +16,8 @@ class EventProvider extends ServiceProvider
         Listeners\TenantConsoleOption::class,
         // Manages databases for tenants.
         Generators\Webserver\Database\DatabaseGenerator::class,
+        // Generate supervisor confiig files
+        Generators\Supervisor\SupervisorConfiguration::class,
         // Manages the connections for the tenants.
         Listeners\Database\ConnectsTenants::class,
         // Runs migrations for new tenants.
@@ -32,8 +34,6 @@ class EventProvider extends ServiceProvider
         Listeners\Filesystem\LoadsTranslations::class,
         // Loads custom vendor folder for tenant.
         Listeners\Filesystem\LoadsVendor::class,
-        // Generate supervisor confiig files
-        Generators\Supervisor\SupervisorConfiguration::class,
     ];
 
     public function boot()

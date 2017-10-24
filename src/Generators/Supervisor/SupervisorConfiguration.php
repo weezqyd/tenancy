@@ -7,6 +7,8 @@ use Elimuswift\Tenancy\Models\Website;
 use Illuminate\Contracts\Events\Dispatcher;
 use Elimuswift\Tenancy\Events\Websites as Events;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 /**
  * Create a configuration file for supervisor.
@@ -37,7 +39,9 @@ class SupervisorConfiguration
         $configs = view('tenancy.generator::supervisor.queue-worker', compact('website'));
         $logDir = storage_path("app/tenancy/{$website->uuid}/logs");
         if (!is_dir($logDir)) {
-            app('tenant.disk')->makeDirectory("{$website->uuid}/logs");
+            $path = "{$website->uuid}/logs";
+            app('tenant.disk')->makeDirectory($path);
+            app('tenant.disk')->put(rtrim($path, '/').'/supervisor.log', '');
         }
 
         return $this->filesystem()->put($this->configFileName($website->uuid), $configs);
@@ -50,7 +54,8 @@ class SupervisorConfiguration
      **/
     public function create(Events\Created $event)
     {
-        return $this->generate($event->website);
+        $this->generate($event->website);
+        $this->runScripts();
     }
 
     /**
@@ -80,10 +85,8 @@ class SupervisorConfiguration
      **/
     public function delete(Events\Deleted $event)
     {
-        $file = $this->configFileName($event->website->uuid);
-        if (file_exists($file)) {
-            $this->filesystem()->delete($file);
-        }
+        $this->deleteFile($event->website->uuid);
+        $this->runScripts();
     }
 
     /**
@@ -94,11 +97,42 @@ class SupervisorConfiguration
     public function update(Events\Updated $event)
     {
         $uuid = Arr::get($event->dirty, 'uuid');
+        $this->deleteFile($uuid);
+        $this->generate($event->website);
+        $this->runScripts();
+    }
+
+    /**
+     * Delete the supervisor config file from the filesystem.
+     *
+     * @param string $uuid
+     **/
+    protected function deleteFile($uuid)
+    {
         $file = $this->configFileName($uuid);
         if (file_exists($file)) {
             $this->filesystem()->delete($file);
         }
+    }
 
-        return $this->generate($event->website);
+    /**
+     * Run supervisor commands.
+     **/
+    private function runScripts()
+    {
+        $commands = [
+                        'supervisorctl reread',
+                        'supervisorctl update',
+                        'supervisorctl restart all',
+                    ];
+        foreach ($commands as $command) {
+            $process = new Process($command);
+            try {
+                $process->mustRun();
+                echo $process->getOutput();
+            } catch (ProcessFailedException $e) {
+                echo $e->getMessage();
+            }
+        }
     }
 }
