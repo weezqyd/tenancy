@@ -119,7 +119,7 @@ trait InteractsWithTenancy
                 if ($property === 'website') {
                     DB::statement("DROP USER IF EXISTS '{$this->website->uuid}'@'localhost'");
                     DB::statement("DROP DATABASE IF EXISTS `{$this->website->uuid}`");
-                    $this->websites->delete($this->website, true);
+                    //$this->websites->delete($this->website, true);
                 } else {
                     $this->{$property}->delete();
                 }

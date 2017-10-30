@@ -1,11 +1,11 @@
 #
 #   Auto generated Apache configuration
 #       @time: {{ date('H:i:s d-m-Y') }}
-#       @author: hyn/multi-tenant
+#       @author: elimuswift/tenancy
 #       @website: {{ $website->uuid }}
 #
 
-@foreach($website->hostnames as $hostname)
+@foreach($website->hostnames()->get() as $hostname)
     @include('tenancy.generator::webserver.apache.blocks.server', [
         'hostname' => $hostname,
         'ssl' => $hostname->certificate
