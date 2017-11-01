@@ -6,4 +6,4 @@ autorestart = true
 user = {{config('webserver.supervisor.user')}} 
 numprocs = {{config('webserver.supervisor.numprocs')}}
 redirect_stderr = true 
-stdout_logfile = {{storage_path("app/tenancy/tenants/{$website->uuid}/logs/supervisor.log")}}
+stdout_logfile = {{storage_path("app/tenancy/{$website->uuid}/logs/supervisor.log")}}

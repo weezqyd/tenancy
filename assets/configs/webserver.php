@@ -25,7 +25,7 @@ return [
          *
          * @see
          */
-        'enabled' => true,
+        'enabled' => false,
 
         /*
          * Define the ports of your Apache service.
