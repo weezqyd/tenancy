@@ -3,14 +3,15 @@
 namespace Elimuswift\Tenancy\Providers;
 
 use Elimuswift\Tenancy\Resolver;
-use Elimuswift\Tenancy\Commands\InstallCommand;
-use Elimuswift\Tenancy\Commands\TenantsCommand;
 use Elimuswift\Tenancy\Contracts;
 use Elimuswift\Tenancy\Environment;
-use Elimuswift\Tenancy\Providers\Tenants as Providers;
 use Elimuswift\Tenancy\Repositories;
 use Illuminate\Support\ServiceProvider;
+use Elimuswift\Tenancy\Database\Connection;
+use Elimuswift\Tenancy\Commands\InstallCommand;
+use Elimuswift\Tenancy\Commands\TenantsCommand;
 use Elimuswift\Tenancy\Contracts\CurrentHostname;
+use Elimuswift\Tenancy\Providers\Tenants as Providers;
 
 class TenancyProvider extends ServiceProvider
 {
@@ -35,17 +36,22 @@ class TenancyProvider extends ServiceProvider
         $this->app->singleton(Environment::class, function ($app) {
             return new Environment($app);
         });
-        //Resolve the current host here
+                //Resolve the current host here
         $this->app->bind(CurrentHostname::class, function ($app) {
             return $app['resolver']->resolve();
         });
-
         $this->registaerCommands();
         $this->migrations();
     }
 
-    public function boot()
+    public function boot(Resolver $resolver, Connection $conn)
     {
+        //Resolve the current host here
+        if (!app()->runningInConsole()) {
+            $tenant = $resolver->resolve();
+            $conn->setDefault();
+            $this->app[Environment::class]->hostname($tenant);
+        }
     }
 
     protected function registaerCommands()

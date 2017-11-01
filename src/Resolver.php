@@ -13,6 +13,27 @@ class Resolver
     use DispatchesEvents;
 
     /**
+     * Http request.
+     *
+     * @var Request
+     **/
+    protected $request;
+
+    /**
+     * Host names repository.
+     *
+     * @var HostnameRepository
+     **/
+    protected $hostname;
+
+    /**
+     * The currently resolved host.
+     *
+     * @var Hostname
+     **/
+    protected $currentHost;
+
+    /**
      * Create Resolver Instance.
      *
      * @param Request            $request
@@ -42,9 +63,20 @@ class Resolver
         }
 
         if ($hostname) {
+            $this->currentHost = $hostname;
             $this->emitEvent(new Identified($hostname));
         }
 
         return $hostname;
+    }
+
+    /**
+     *Get the resolved hostname.
+     *
+     * @return Hostname
+     **/
+    public function currentHost()
+    {
+        return $this->currentHost ?? new Hostname();
     }
 }
