@@ -20,6 +20,17 @@ class Environment
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->identifyHostname();
+    }
+
+    /**
+     * Auto identification of the tenant hostname to use.
+     */
+    public function identifyHostname()
+    {
+        $this->app->singleton(CurrentHostname::class, function ($app) {
+            return $app->resolver->resolve($app->request);
+        });
     }
 
     /**
@@ -41,11 +52,7 @@ class Environment
      */
     public function hostname(Models\Hostname $model = null): ?Models\Hostname
     {
-        if ($model !== null) {
-            $this->app->extend(CurrentHostname::class, function ($abstract, $app) use ($model) {
-                return $model;
-            });
-
+        if (null !== $model) {
             $this->emitEvent(new Switched($model));
 
             return $model;

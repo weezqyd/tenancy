@@ -39,21 +39,22 @@ class Resolver
      * @param Request            $request
      * @param HostnameRepository $hostnameRepository
      */
-    public function __construct(Request $request, HostnameRepository $hostnameRepository)
+    public function __construct(HostnameRepository $hostnameRepository)
     {
-        $this->request = $request;
         $this->hostname = $hostnameRepository;
     }
 
     /**
      * @return Hostname|null
      */
-    public function resolve(): ?Hostname
+    public function resolve(Request $request): ?Hostname
     {
         $hostname = env('TENANCY_CURRENT_HOSTNAME');
-
+        if ($this->currentHost) {
+            $hostname = $this->currentHost;
+        }
         if (!$hostname) {
-            $hostname = $this->request->server('SERVER_NAME');
+            $hostname = $request->server('SERVER_NAME');
         }
 
         $hostname = $this->hostname->findByHostname($hostname);

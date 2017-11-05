@@ -10,7 +10,6 @@ use Illuminate\Support\ServiceProvider;
 use Elimuswift\Tenancy\Database\Connection;
 use Elimuswift\Tenancy\Commands\InstallCommand;
 use Elimuswift\Tenancy\Commands\TenantsCommand;
-use Elimuswift\Tenancy\Contracts\CurrentHostname;
 use Elimuswift\Tenancy\Providers\Tenants as Providers;
 
 class TenancyProvider extends ServiceProvider
@@ -35,10 +34,6 @@ class TenancyProvider extends ServiceProvider
         // Now register it into ioc to make it globally available.
         $this->app->singleton(Environment::class, function ($app) {
             return new Environment($app);
-        });
-                //Resolve the current host here
-        $this->app->bind(CurrentHostname::class, function ($app) {
-            return $app['resolver']->resolve();
         });
         $this->registaerCommands();
         $this->migrations();
