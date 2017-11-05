@@ -43,7 +43,7 @@ class TenancyProvider extends ServiceProvider
     {
         //Resolve the current host here
         if (!app()->runningInConsole()) {
-            $tenant = $resolver->resolve();
+            $tenant = $resolver->resolve($this->app->request);
             $conn->setDefault();
             $this->app[Environment::class]->hostname($tenant);
         }

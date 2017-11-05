@@ -15,7 +15,14 @@ class ApacheGenerator implements VhostGenerator, ReloadsServices
      */
     public function generate(Website $website): string
     {
-        return view('tenancy.generator::webserver.apache.vhost', compact('website'));
+        return view(
+            'tenancy.generator::webserver.apache.vhost',
+            [
+                'website' => $website,
+                'config' => config('webserver.apache2', []),
+                'media' => true,
+            ]
+        );
     }
 
     /**
