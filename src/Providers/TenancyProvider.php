@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Elimuswift\Tenancy\Database\Connection;
 use Elimuswift\Tenancy\Commands\InstallCommand;
 use Elimuswift\Tenancy\Commands\TenantsCommand;
+use Elimuswift\Tenancy\Commands\RegenerateWokersCommand;
 use Elimuswift\Tenancy\Providers\Tenants as Providers;
 
 class TenancyProvider extends ServiceProvider
@@ -53,6 +54,7 @@ class TenancyProvider extends ServiceProvider
     {
         $this->commands(InstallCommand::class);
         $this->commands(TenantsCommand::class);
+        $this->commands(RegenerateWokersCommand::class);
     }
 
     protected function repositories()
