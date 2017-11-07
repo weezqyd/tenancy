@@ -18,8 +18,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/elimuswift/tenancy/issues",
-        "source": "https://github.com/elimuswift/tenancy"
+        "issues": "https://github.com/weezqyd/tenancy/issues",
+        "source": "https://github.com/weezqyd/tenancy"
     },
     "require": {
         "php": ">=7.1.0",
