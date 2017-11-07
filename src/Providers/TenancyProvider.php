@@ -7,7 +7,6 @@ use Elimuswift\Tenancy\Contracts;
 use Elimuswift\Tenancy\Environment;
 use Elimuswift\Tenancy\Repositories;
 use Illuminate\Support\ServiceProvider;
-use Elimuswift\Tenancy\Database\Connection;
 use Elimuswift\Tenancy\Commands\InstallCommand;
 use Elimuswift\Tenancy\Commands\TenantsCommand;
 use Elimuswift\Tenancy\Commands\RegenerateWokersCommand;
@@ -38,16 +37,6 @@ class TenancyProvider extends ServiceProvider
         });
         $this->registaerCommands();
         $this->migrations();
-    }
-
-    public function boot(Resolver $resolver, Connection $conn)
-    {
-        //Resolve the current host here
-        if (!app()->runningInConsole()) {
-            $tenant = $resolver->resolve($this->app->request);
-            $conn->setDefault();
-            $this->app[Environment::class]->hostname($tenant);
-        }
     }
 
     protected function registaerCommands()

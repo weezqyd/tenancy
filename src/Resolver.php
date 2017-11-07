@@ -49,17 +49,11 @@ class Resolver
      */
     public function resolve(Request $request): ?Hostname
     {
-        $hostname = env('TENANCY_CURRENT_HOSTNAME');
-        if (!$hostname) {
-            $hostname = $request->server('SERVER_NAME');
-        }
-
+        $hostname = $request->server('SERVER_NAME');
         $hostname = $this->currentHost ?: $this->hostname->findByHostname($hostname);
-
         if (!$hostname) {
             $hostname = $this->hostname->getDefault();
         }
-
         if ($hostname) {
             $this->currentHost = $hostname;
             $this->emitEvent(new Identified($hostname));
