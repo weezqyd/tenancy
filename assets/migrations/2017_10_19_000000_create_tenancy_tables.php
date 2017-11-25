@@ -17,7 +17,7 @@ class CreateTenancyTables extends AbstractMigration
             $table->string('slug', 255)->nullable();
             $table->string('city', 255)->nullable();
             $table->string('mobile', 255)->nullable();
-            $table->string('secondary_email', 255)->nullable();
+            $table->string('address', 255)->nullable();
             $table->integer('currency_id')->nullable()->unsigned();
             $table->string('tax', 255)->nullable();
             $table->timestamp('created_at')->nullable();
