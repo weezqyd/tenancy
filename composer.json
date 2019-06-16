@@ -15,7 +15,12 @@
             "name": "Albert Leitato",
             "email": "wizqydy@gmail.com",
             "homepage": "https://github.com/weezqyd"
-        }
+        }, 
+        {
+            "name": "Daniël Klabbers",
+            "email": "daniel+hyn@klabbers.email",
+            "homepage": "https://luceos.com"
+        }   
     ],
     "support": {
         "issues": "https://github.com/weezqyd/tenancy/issues",
